@@ -1,6 +1,6 @@
 <h1>ExpNo 5 : Implement Simple Hill Climbing Algorithm</h1> 
-<h3>Name:             </h3>
-<h3>Register Number:             </h3>
+<h3>Name: SANJUSHRI A </h3>
+<h3>Register Number:212223040187 </h3>
 <H3>Aim:</H3>
 <p>Implement Simple Hill Climbing Algorithm and Generate a String by Mutating a Single Character at each iteration </p>
 <h2> Theory: </h2>
@@ -38,10 +38,52 @@ Feedback is provided in terms of heuristic function
 <h3>Step-4:</h3>
 <p> Lopp Step -2 and Step-3  until we achieve the score to be Zero to achieve Global Minima.</p>
 
+### Program
+
+```python
+ import random
+ import string
+
+def generate_random_solution(target):
+    return [random.choice(string.printable) for _ in range(len(target))]
+
+def evaluate(solution, target):
+    return sum(abs(ord(s) - ord(t)) for s, t in zip(solution, target))
+
+def mutate_solution(solution):
+    index = random.randint(0, len(solution) - 1)
+    mutated = list(solution)
+    mutated[index] = random.choice(string.printable)
+    return mutated
+
+def SimpleHillClimbing():
+    target = "Artificial Intelligence"
+    current_solution = generate_random_solution(target)
+    current_score = evaluate(current_solution, target)
+
+    print("Score:", current_score, "Solution:", "".join(current_solution))
+
+    while current_score > 0:
+        new_solution = mutate_solution(current_solution)
+        new_score = evaluate(new_solution, target)
+
+        if new_score < current_score:
+            current_solution = new_solution
+            current_score = new_score
+            print("Score:", current_score, "Solution:", "".join(current_solution))
+
+    print("\nScore: 0 Solution:", "".join(current_solution))
+    print(" Goal reached!")
+
+SimpleHillClimbing()
+
+
+```
+
 <hr>
 <h2>Sample Input and Output</h2>
 <h2>Sample String:</h2> Artificial Intelligence
-<h2>Output:</h2>
+<h2>Sample Output:</h2>
 Score: 643  Solution :  8RzF:oG ]%;CPORRMe!zGvk<br>
 Score: 609  Solution :  8RzF:oG ]%;CPqRRMe!zGvk<br>
 Score: 604  Solution :  8RzF:oG ]%;CPqRRMe!zGqk<br>
@@ -59,3 +101,13 @@ Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 1  Solution :  Artificial Intelligencf<br>
 Score: 0  Solution :  Artificial Intelligence<br>
+
+
+### Output:
+
+![image](https://github.com/user-attachments/assets/ecc1dddb-95e8-4f9d-a5a0-2d100804fcf9)
+
+###Result:
+    Thus the program to implement Simple Hill Climbing Algorithm executed successfully
+
+
